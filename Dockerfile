@@ -16,11 +16,11 @@ RUN mvn clean package -DskipTests
 FROM openjdk:11-jre-slim
 WORKDIR /app
 
-# Copy the JAR from the build stage (correcting the path)
+# Copy the built JAR from the build stage
 COPY --from=build /app/target/Attendance-System-0.0.1-SNAPSHOT.jar Attendance-System.jar
 
-# Expose application port
+# Expose the application port
 EXPOSE 8081
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "Attendance-System.jar"]
+CMD ["java", "-jar", "Attendance-System.jar"]
